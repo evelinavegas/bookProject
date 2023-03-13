@@ -7,12 +7,3 @@ export function getRandomFractional(min, max) {
     countRandom = countRandom.toFixed(6)
     return countRandom
 }
-export function getRandomElemet(arr, min, max){
-    let randomAray = [];
-    for(let i = 0; i <= getRandomInteger(min, max); i++){
-        
-        randomAray.push(arr[getRandomInteger(0, arr.length)])        
-    }
-    randomAray = new Set(randomAray)
-    return randomAray
-}

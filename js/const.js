@@ -47,3 +47,10 @@ export const photosArray = [
     'http://o0.github.io/assets/images/tokyo/hotel1.jpg', 
     'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
     'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
+]
+
+// task 3
+
+export const card = document.querySelector('#card');
+export const popup = document.querySelector('.popup');
+export const mapCanvas = document.querySelector('#map-canvas')

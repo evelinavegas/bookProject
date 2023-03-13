@@ -22,11 +22,12 @@ function getPhoto(arr){
     arr.forEach(element => {
         let img = document.createElement('img')
         img.src = element
-        img.width = '45'
-        img.height = '40'
+        img.width = '45';
+        img.height = '40';
+        img.classList.add('popup__photo');
         photoFragment.append(img)
-        return photoFragment
     });
+    return photoFragment
 }
 
 export function creatContainer(array){

@@ -1,9 +1,4 @@
-import {countOffer, RANGE_PHOTOS_AVATAR, RANGE_PHOTOS, RANGE_ROOMS, RANGE_PRICE, RANGE_GUESTS, RANGE_X, RANGE_Y, RANGE_FEATURES, hoursArray, typeArray, featuresArray, descriptionArray, photosArray} from './const.js'
-import {getRandomInteger, getRandomFractional, getRandomElemet} from './util.js'
 
-export const dataArray = new Array(countOffer).fill(null).map((index)=>getOffer(index));
-
-function getOffer(){
     return {
         author: `img/avatars/user0${getRandomInteger(RANGE_PHOTOS_AVATAR.min, RANGE_PHOTOS_AVATAR.max)}.png`,
         offer: {

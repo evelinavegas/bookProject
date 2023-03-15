@@ -29,7 +29,11 @@ function getPhoto(arr){
     });
     return photoFragment
 }
-
+function getIconFeautres(arr, cloneNode){
+    arr.forEach(element =>{        
+        cloneNode.querySelector(`.popup__feature--${element}`).classList.remove('hidden')
+    })
+}
 export function creatContainer(array){
     const cardFragment = new DocumentFragment();
 
@@ -42,7 +46,7 @@ export function creatContainer(array){
     popupNode.querySelector('.popup__type').innerText = choiceType(dataOffer.type);
     popupNode.querySelector('.popup__text--capacity').innerText =`${dataOffer.rooms} кімнати для ${data.offer.guests} гостей`;
     popupNode.querySelector('.popup__text--time').innerText = `Заїзд після ${dataOffer.checkin}, виїзд до ${data.offer.checkout}.`;
-    popupNode.querySelector('.popup__features').innerText = dataOffer.features.join(', ');
+    getIconFeautres(dataOffer.features, popupNode);
     popupNode.querySelector('.popup__description').innerText = dataOffer.description;
     getPhoto(dataOffer.photos)
     popupNode.querySelector('.popup__photos').append(photoFragment) 

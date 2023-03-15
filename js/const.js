@@ -55,9 +55,4 @@ export const card = document.querySelector('#card');
 export const popup = document.querySelector('.popup');
 export const mapCanvas = document.querySelector('#map-canvas')
 
-// task4
-export const price = document.querySelector('#price');
 
-export const type = document.querySelector('#type');
-export const timein = document.querySelector('#timein');
-export const timeout = document.querySelector('#timeout');

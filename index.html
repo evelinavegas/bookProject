@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="leaflet/leaflet.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <title>Кексобукинг</title>
+  <title>Кексобукінг</title>
 </head>
 <body>
   <main>
@@ -102,7 +102,7 @@
           </select>
         </fieldset>
         <fieldset class="ad-form__element">
-          <label class="ad-form__label" for="price">Цена за ніч, грн.</label>
+          <label class="ad-form__label" for="price">Ціна за ніч, грн.</label>
           <input id="price" name="price" type="number" placeholder="1000" min="1000">
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--time">
@@ -119,7 +119,7 @@
           </select>
         </fieldset>
         <fieldset class="ad-form__element">
-          <label class="ad-form__label" for="room_number">Количество комнат</label>
+          <label class="ad-form__label" for="room_number">Коількість кімнат</label>
           <select id="room_number" name="rooms">
             <option value="1" selected>1 кімната</option>
             <option value="2">2 кімнати</option>
@@ -152,8 +152,8 @@
           <label class="feature feature--conditioner" for="feature-conditioner">Кондиціонер</label>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
-          <label class="ad-form__label" for="description">Опіс (не обовьязково)</label>
-          <textarea id="description" name="description" placeholder="Здесь расскажите о том, какое ваше жилье замечательное и вообще"></textarea>
+          <label class="ad-form__label" for="description">Опис (не обов'язково)</label>
+          <textarea id="description" name="description" placeholder="Тут розкажіть про те, яке ваше житло чудове"></textarea>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label">Фото житла</label>
@@ -167,7 +167,7 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--submit">
           <button class="ad-form__submit" type="submit">Опублікувати</button>
-          или <button class="ad-form__reset" type="reset">очистити</button>
+          або <button class="ad-form__reset" type="reset">очистити</button>
         </fieldset>
       </form>
     </section>
@@ -187,16 +187,15 @@
       <p class="popup__text popup__text--capacity">2 кімнати для 3 гостей</p>
       <p class="popup__text popup__text--time">Заїзд після 14:00, виїзд до 10:00</p>
       <ul class="popup__features">
-        <li class="popup__feature popup__feature--wifi"></li>
-        <li class="popup__feature popup__feature--dishwasher"></li>
-        <li class="popup__feature popup__feature--parking"></li>
-        <li class="popup__feature popup__feature--washer"></li>
-        <li class="popup__feature popup__feature--elevator"></li>
-        <li class="popup__feature popup__feature--conditioner"></li>
+        <li class="popup__feature popup__feature--wifi hidden"></li>
+        <li class="popup__feature popup__feature--dishwasher hidden"></li>
+        <li class="popup__feature popup__feature--parking hidden"></li>
+        <li class="popup__feature popup__feature--washer hidden"></li>
+        <li class="popup__feature popup__feature--elevator hidden"></li>
+        <li class="popup__feature popup__feature--conditioner hidden"></li>
       </ul>
       <p class="popup__description">Чудова квартира-студія у центрі Токіо. Підходить як для туристів, так і для бізнесменів. Квартира повністю укомплектована та нещодавно відремонтована.</p>
       <div class="popup__photos">
-        <img src="" class="popup__photo" width="45" height="40" alt="Фотографія житла">
       </div>
     </article>
   </template>

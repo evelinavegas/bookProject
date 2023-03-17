@@ -1,5 +1,8 @@
 import {card, mapCanvas,} from './const.js'
 
+const photoFragment = new DocumentFragment
+export const cardFragment = new DocumentFragment();
+
 function choiceType(data) {
     switch(data){
         case 'flat':
@@ -17,7 +20,6 @@ function choiceType(data) {
     }    
     return data
 }
-const photoFragment = new DocumentFragment
 function getPhoto(arr){
     arr.forEach(element => {
         let img = document.createElement('img')
@@ -35,8 +37,6 @@ function getIconFeautres(arr, cloneNode){
     })
 }
 export function creatContainer(array){
-    const cardFragment = new DocumentFragment();
-
     const popupNode = card.content.cloneNode(true);
     const data =  array[0]
     const dataOffer = data.offer
@@ -54,6 +54,6 @@ export function creatContainer(array){
 
 
     cardFragment.append(popupNode)
-    mapCanvas.append(cardFragment)
+    return cardFragment
 
 }

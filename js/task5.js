@@ -67,7 +67,6 @@ function mapClick(map){
     });
     map.addLayer(markerRed);
 }
-console.log('error')
 setDisadled(formElement);
 setDisadled(mapSelect);
 setDisadled(mapFieldset);

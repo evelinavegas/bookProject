@@ -1,7 +1,5 @@
 import {dataArray} from './data.js';
-import { creatContainer } from './task3.js';
+import { createMap } from './task5.js';
 
-creatContainer(dataArray)
-
-
+setTimeout(createMap, 2000)
 

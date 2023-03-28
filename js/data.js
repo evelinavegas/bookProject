@@ -1,7 +1,10 @@
+const http = require('http');
+const fs = require('fs');
+
 import {countOffer, RANGE_PHOTOS_AVATAR, RANGE_PHOTOS, RANGE_ROOMS, RANGE_PRICE, RANGE_GUESTS, RANGE_X, RANGE_Y, RANGE_FEATURES, hoursArray, typeArray, featuresArray, descriptionArray, photosArray} from './const.js'
 import {getRandomInteger, getRandomFractional, getRandomElemet} from './util.js'
 
-export const dataArray = new Array(countOffer).fill(null).map((index)=>getOffer(index));
+const dataArray = new Array(countOffer).fill(null).map((index)=>getOffer(index));
 
 function getOffer(){
     return {
@@ -24,3 +27,20 @@ function getOffer(){
             y: `довгота: ${getRandomFractional(RANGE_Y.min, RANGE_Y.max)}`}
     }
 }
+fs.writeFileSync('photos.txt', JSON.stringify(dataArray));
+http.createServer(function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin','*');
+
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    const url = req.url;
+
+    if(url ==='/photos') {
+        const data = fs.readFileSync('photos.txt', 'utf8');
+        res.end(data);
+    }
+    else {
+        res.write('Wrong route');
+        res.end();
+    }
+
+}).listen(4000)

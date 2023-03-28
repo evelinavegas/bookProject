@@ -1,12 +1,14 @@
-import {dataArray} from './data.js';
 import { creatContainer, cardFragment } from './task3.js';
-
 const formElement = document.querySelectorAll('.ad-form fieldset');
-const mapFilters = document.querySelector('.map__filters').classList.add('map__filters-disabled');
 const mapSelect = document.querySelectorAll('.map__filters select');
 const mapFieldset = document.querySelectorAll('.map__filters fieldset');
-const addressInput = document.querySelector('#address')
-addressInput.setAttribute("disabled", "disabled")
+const addressInput = document.querySelector('#address');
+const LOCATION_RANGE = {
+    lat: 35.6894, 
+    lng: 139.6923
+}
+addressInput.setAttribute("disabled", "disabled");
+addressInput.value = `${LOCATION_RANGE.lat}, ${LOCATION_RANGE.lng}`
 const LeafIcon = L.Icon.extend({
     options: {
        iconSize:     [38, 95],
@@ -23,7 +25,7 @@ const iconRed = new LeafIcon({
     iconUrl: '../img/main-pin.svg',
 })
 
-const markerRed = L.marker([35.6894,139.6923], { draggable: true, icon: iconRed,});
+const markerRed = L.marker([LOCATION_RANGE.lat,LOCATION_RANGE.lng], { draggable: true, icon: iconRed,});
 
 function setDisadled(arr){
     arr.forEach((e) =>{
@@ -48,22 +50,22 @@ function createPopup(fragment){
     return div
 }
     
-function createMarkers(arr, map){
+function createMarkers(arr){
     arr.forEach(e => {
     const address = getAddress(e.offer.address);
     creatContainer(e);
-    
-    const marker = L.marker([address[0], address[1]], {icon: iconBlue}).addTo(map);
+    console.log(cardFragment)
+    const marker = L.marker([address[0], address[1]], {icon: iconBlue}).addTo(myMap);
     marker.bindPopup(createPopup(cardFragment))
 })
 }
 
 function mapClick(map){
-    markerRed.on('dragend', (e) => {
+    markerRed.on('drag', () => {
         const position = markerRed.getLatLng();
         markerRed.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
         map.panTo(new L.LatLng(position.lat, position.lng))
-        addressInput.value  = `${position.lat} ${position.lng}`
+        addressInput.value  = `${position.lat.toFixed(4)} ${position.lng.toFixed(4)}`
     });
     map.addLayer(markerRed);
 }
@@ -71,11 +73,14 @@ setDisadled(formElement);
 setDisadled(mapSelect);
 setDisadled(mapFieldset);
 
-export function createMap() {
-    const myMap = L.map('map', {
-        center: [35.6894,139.692],
+
+
+const myMap = L.map('map', {
+        center: [LOCATION_RANGE.lat, LOCATION_RANGE.lng],
         zoom: 11
     });
+export function createMap() {
+    
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -83,8 +88,16 @@ export function createMap() {
     removeDisadled(formElement);
     removeDisadled(mapSelect);
     removeDisadled(mapFieldset);
-    
-    createMarkers(dataArray, myMap);
+    getResponse()
     myMap.addEventListener('click', mapClick(myMap));
 
+}
+async function getResponse(){
+    let resp = await fetch("http://localhost:4000/photos");
+    let arrayImage =  await resp.text()
+    let array = JSON.parse(arrayImage)
+    
+    createMarkers(array, myMap);
+
+    return array
 }

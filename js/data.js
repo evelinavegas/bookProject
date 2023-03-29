@@ -30,12 +30,27 @@ function getOffer(){
 fs.writeFileSync('photos.txt', JSON.stringify(dataArray));
 http.createServer(function (req, res) {
     res.setHeader('Access-Control-Allow-Origin','*');
-
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requeted-With, Content-Type, Accept, Authorization, RBR");
     res.writeHead(200, {'Content-Type': 'application/json'});
     const url = req.url;
 
     if(url ==='/photos') {
         const data = fs.readFileSync('photos.txt', 'utf8');
+        const dataOffer = fs.readFileSync('photos.txt', 'utf8');
+
+        const dataOfferJSON = JSON.parse(dataOffer)
+        let responseString = '';
+        req.on("data", (data) => {
+            let stringData = data.toString('utf8');
+            let stringDataParse = JSON.parse(stringData);
+            stringDataParse.id = dataOfferJSON.length;
+
+            dataOfferJSON.push(stringDataParse);
+            console.log(dataOfferJSON);
+            fs.writeFileSync('data.txt', JSON.stringify(dataOfferJSON));
+            
+            responseString = JSON.stringify(dataOfferJSON);})
+            console.log(data)
         res.end(data);
     }
     else {
@@ -43,4 +58,4 @@ http.createServer(function (req, res) {
         res.end();
     }
 
-}).listen(4000)
+}).listen(8000)

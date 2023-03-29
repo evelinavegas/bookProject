@@ -36,8 +36,9 @@ http.createServer(function (req, res) {
 
     if(url ==='/photos') {
         const data = fs.readFileSync('photos.txt', 'utf8');
+        res.end(data);
+    } else if(url ==='/photo') {
         const dataOffer = fs.readFileSync('photos.txt', 'utf8');
-
         const dataOfferJSON = JSON.parse(dataOffer)
         let responseString = '';
         req.on("data", (data) => {
@@ -48,10 +49,12 @@ http.createServer(function (req, res) {
             dataOfferJSON.push(stringDataParse);
             console.log(dataOfferJSON);
             fs.writeFileSync('data.txt', JSON.stringify(dataOfferJSON));
-            
-            responseString = JSON.stringify(dataOfferJSON);})
-            console.log(data)
-        res.end(data);
+
+            responseString = JSON.stringify(dataOfferJSON);
+        });
+        req.on('end', () => {
+            res.end(responseString);
+        });
     }
     else {
         res.write('Wrong route');
